@@ -1,0 +1,46 @@
+/* Motion layer (injected/driven by motion.js). Decorative only: no content or layout changes. */
+.m-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:95;background:linear-gradient(90deg,var(--brand,#7B6BB0),var(--brand-tint,#B9AEE0));transform-origin:left;transform:scaleX(0);pointer-events:none}
+
+/* headline word reveal */
+.m-w{display:inline-block;opacity:0;transform:translateY(.45em);animation:m-up .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
+@keyframes m-up{to{opacity:1;transform:none}}
+
+/* soft clouds in hero areas */
+.hero>.wrap,.page-hero>.wrap{position:relative;z-index:1}
+.m-cloud{position:absolute;left:0;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(closest-side,rgba(185,174,224,.22),rgba(185,174,224,0));filter:blur(6px);animation:m-drift linear infinite;will-change:transform}
+@keyframes m-drift{from{transform:translateX(-40vw)}to{transform:translateX(120vw)}}
+
+/* hero flight path (SVG overlay, plays once) */
+.m-fly{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* country / route cards */
+.m-route{position:absolute;left:0;right:0;bottom:0;width:100%;height:18px;pointer-events:none;overflow:visible;opacity:.8}
+.m-route path.line{fill:none;stroke:var(--brand-tint,#B9AEE0);stroke-width:1.5;stroke-dasharray:4 5;stroke-dashoffset:0;opacity:0;transition:opacity .6s .3s}
+.in .m-route path.line,.m-route.go path.line{opacity:1}
+.m-route .pl{fill:var(--brand,#7B6BB0);opacity:0}
+.flag-card,.x-country{position:relative;overflow:hidden}
+
+/* step number pop in the roadmap */
+.x-step.in::before{animation:m-pop .6s .25s both cubic-bezier(.3,1.6,.5,1)}
+@keyframes m-pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+
+/* photos: gentle zoom on hover */
+.media img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.media:hover img{transform:scale(1.04)}
+
+/* buttons: light sweep + press */
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg);transition:left .7s;pointer-events:none}
+.btn-primary:hover::after{left:140%}
+.btn:active{transform:scale(.97)}
+
+/* WhatsApp pulse ring */
+.float-wa::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:m-pulse 3.6s ease-out infinite;pointer-events:none}
+@keyframes m-pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}25%,100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+
+@media (prefers-reduced-motion:reduce){
+  .m-progress,.m-cloud,.m-fly{display:none}
+  .m-w{opacity:1;transform:none;animation:none}
+  .float-wa::before{animation:none}
+}
+.hero h1 .m-w,.page-hero h1 .m-w{color:inherit}

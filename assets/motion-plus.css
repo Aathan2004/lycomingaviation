@@ -1,0 +1,69 @@
+/* Extra aircraft motion (driven by motion-plus.js). Decorative only. */
+.m-pl{display:inline-block;color:var(--brand,#7B6BB0);line-height:0}
+.m-pl svg{display:block}
+
+/* sky lane + distant jet */
+.m-lane,.m-jet{position:absolute;left:0;z-index:0;pointer-events:none;display:flex;align-items:center;opacity:.55}
+.m-lane{animation:m-lane 15s linear forwards}
+.m-jet{opacity:.32;animation:m-lane 70s linear infinite}
+.m-lane i,.m-jet i{width:90px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-tint,#B9AEE0))}
+@keyframes m-lane{from{transform:translateX(-140px)}to{transform:translateX(calc(100vw + 40px))}}
+
+/* orbit dot becomes a plane */
+.orbit .dot{width:30px;height:30px;margin-left:-15px;top:-15px;background:none!important;box-shadow:none!important;color:var(--brand)}
+.orbit .dot::before{content:"";position:absolute;right:100%;top:50%;width:70px;height:2px;margin-right:-4px;background:linear-gradient(90deg,transparent,var(--brand-tint,#B9AEE0))}
+.orbit .dot svg{position:relative;display:block}
+
+/* page-header runway take-off */
+.m-runway{position:absolute;left:0;right:0;bottom:16px;height:2px;pointer-events:none;z-index:0;background:repeating-linear-gradient(90deg,var(--brand-tint,#B9AEE0) 0 10px,transparent 10px 22px);opacity:.55}
+.m-runway .m-pl{position:absolute;left:0;bottom:-2px;animation:m-roll 5s cubic-bezier(.5,0,.8,.6) 1.2s both}
+@keyframes m-roll{0%{transform:translateX(-30px);opacity:1}60%{transform:translateX(55vw);opacity:1}100%{transform:translateX(105vw) translateY(-90px) rotate(-16deg);opacity:0}}
+
+/* scroll plane riding the progress line */
+.m-prog-plane{position:fixed;top:-5px;left:0;z-index:96;pointer-events:none;color:var(--brand,#7B6BB0);opacity:0;transition:opacity .3s,transform .25s}
+.m-prog-plane.on{opacity:1}
+
+/* footer landing */
+.m-land{position:relative;height:60px;overflow:hidden;pointer-events:none}
+.m-land::after{content:"";position:absolute;left:0;right:0;bottom:16px;height:2px;background:repeating-linear-gradient(90deg,var(--brand-tint,#B9AEE0) 0 10px,transparent 10px 22px);opacity:.6}
+.m-land .m-pl{position:absolute;left:0;bottom:10px;opacity:0}
+.m-land.go .m-pl{animation:m-land 3.4s cubic-bezier(.2,.6,.3,1) forwards}
+.m-land.go.off .m-pl{animation:m-off 1.4s cubic-bezier(.5,0,.9,.6) forwards}
+@keyframes m-land{0%{transform:translate(-6vw,-70px) rotate(14deg);opacity:0}12%{opacity:1}45%{transform:translate(28vw,0) rotate(0)}100%{transform:translate(55vw,0);opacity:1}}
+@keyframes m-off{0%{transform:translate(55vw,0);opacity:1}100%{transform:translate(110vw,-110px) rotate(-18deg);opacity:0}}
+
+/* roadmap journey */
+.x-road{position:relative}
+.m-road-plane{position:absolute;left:0;top:0;z-index:3;pointer-events:none;color:var(--brand-dark,#56478E);opacity:0;transition:opacity .3s}
+.x-step.lit{border-color:var(--brand-tint,#B9AEE0)}
+.x-step.lit::before{background:var(--brand);color:#fff}
+
+/* hero 3D tilt */
+.hero-art.in.m-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+
+/* click-to-fly */
+.m-click{position:fixed;left:0;z-index:99;pointer-events:none;color:var(--brand);display:flex;align-items:center;animation:m-click 2.2s cubic-bezier(.4,0,.6,1) forwards}
+.m-click i{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-tint,#B9AEE0))}
+@keyframes m-click{from{transform:translate(-160px,0) rotate(0)}to{transform:translate(calc(100vw + 40px),-120px) rotate(-8deg)}}
+
+/* course header animations */
+.course>.wrap{position:relative}
+.m-ic{position:absolute;right:0;top:-6px;width:72px;height:72px;pointer-events:none;opacity:.9}
+.m-ic *{vector-effect:non-scaling-stroke}
+.m-spin{transform-origin:36px 36px;animation:m-spin 4s linear infinite}
+@keyframes m-spin{to{transform:rotate(360deg)}}
+.m-slide{animation:m-slide 3.6s ease-in-out infinite alternate}
+@keyframes m-slide{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+.m-belt{stroke-dasharray:5 7;animation:m-belt 1.2s linear infinite}
+@keyframes m-belt{to{stroke-dashoffset:-24}}
+.m-ride{animation:m-ride 3.6s linear infinite}
+@keyframes m-ride{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+.m-flip{transform-origin:36px 36px;animation:m-flip 3.2s ease-in-out infinite}
+@keyframes m-flip{0%,15%{transform:scaleX(1)}50%{transform:scaleX(-1)}85%,100%{transform:scaleX(1)}}
+@media (max-width:760px){.m-ic{display:none}}
+
+/* gallery: photos clear in like clouds */
+.gallery .reveal{filter:blur(10px);transition:opacity .7s,transform .7s,filter 1s}
+.gallery .reveal.in{filter:none}
+
+@media (prefers-reduced-motion:reduce){.m-lane,.m-jet,.m-runway,.m-prog-plane,.m-click,.m-road-plane,.m-land,.m-ic{display:none}.gallery .reveal{filter:none}}

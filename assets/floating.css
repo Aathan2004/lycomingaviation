@@ -1,0 +1,13 @@
+/* Floating buttons (injected by floating.js): WhatsApp bottom-left, scroll-to-top bottom-right */
+.float-wa{position:fixed;left:18px;bottom:18px;bottom:calc(18px + env(safe-area-inset-bottom));left:calc(18px + env(safe-area-inset-left));z-index:70;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.float-wa:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(0,0,0,.4)}
+.float-wa svg{width:30px;fill:#fff}
+.to-top{position:fixed;right:18px;bottom:18px;bottom:calc(18px + env(safe-area-inset-bottom));right:calc(18px + env(safe-area-inset-right));z-index:70;width:48px;height:48px;border:0;border-radius:50%;background:var(--brand,#7B6BB0);color:#fff;font:inherit;font-size:1.4rem;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px -8px rgba(60,40,120,.55);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s,background .2s,box-shadow .2s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--brand-dark,#56478E);transform:translateY(-3px);box-shadow:0 14px 30px -8px rgba(60,40,120,.65)}
+.to-top:focus-visible,.float-wa:focus-visible{outline:3px solid var(--brand-tint,#B9AEE0);outline-offset:3px}
+@media (max-width:640px){
+  .float-wa{width:52px;height:52px;left:14px;bottom:calc(14px + env(safe-area-inset-bottom))}
+  .to-top{width:48px;height:48px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){.to-top,.float-wa{transition:none}}
