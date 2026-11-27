@@ -1,21 +1,8 @@
 # Security Policy
 
-## Supported Versions
+This repository hosts the static website for Lycoming Aviation Academy (https://lycomingaviation.com).
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## Reporting a vulnerability
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Please email **info@lycomingaviation.com** with details of the issue and steps to reproduce it.
+Do not open a public GitHub issue for security problems. We aim to acknowledge reports within a few working days.
