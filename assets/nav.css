@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Mobile & tablet navigation (1180px and below)
+   - Header stays at the top while scrolling, on every page (home included)
+   - Subtle liquid-glass look, built only from the existing brand colours
+   - Accessible slide-in menu (behaviour in assets/nav.js)
+   Desktop (above 1180px) is not affected by anything in this file.
+   ========================================================================== */
+@media (max-width:1180px){
+  /* Sticky glass header. The glass sits on ::before so the menu panel can
+     have its own blur (a blurred parent would block the child's blur). */
+  header{position:sticky;top:0;z-index:60;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;
+    border-bottom:1px solid rgba(228,225,238,.8);transition:box-shadow .3s ease}
+  header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:rgba(255,255,255,.72);
+    -webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.65);transition:background .3s ease}
+  header.scrolled{box-shadow:0 10px 30px -20px rgba(42,33,72,.35)}
+  header.scrolled::before{background:rgba(255,255,255,.8)}
+  .nav{gap:12px}
+
+  /* Hamburger: larger touch target, turns into an X when open */
+  .burger{flex-shrink:0;width:44px;height:44px;border-radius:12px;transition:background .2s ease}
+  .burger:hover{background:var(--brand-soft)}
+  .burger:focus-visible{outline:3px solid var(--brand-tint);outline-offset:2px}
+  .burger span{transition:transform .3s ease,opacity .2s ease}
+  .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  /* Menu panel: frosted, fits the screen below the header, hidden from
+     keyboard and screen readers while closed */
+  .menu{height:calc(100vh - 76px);height:var(--menu-h,calc(100dvh - 76px));
+    background:rgba(255,255,255,.9);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+    border-top:1px solid rgba(228,225,238,.8);overscroll-behavior:contain;
+    padding-bottom:calc(40px + env(safe-area-inset-bottom));
+    transform:translateY(-8px);opacity:0;visibility:hidden;
+    transition:transform .25s ease,opacity .25s ease,visibility 0s linear .25s}
+  .menu.open{transform:none;opacity:1;visibility:visible;transition:transform .25s ease,opacity .25s ease,visibility 0s}
+  /* The menu no longer sits off-screen, so nothing can widen the page; clip any stray overflow too */
+  html,body{overflow-x:clip}
+  .menu>li>a{min-height:48px}
+  .menu>li>a:focus-visible,.drop a:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+  .menu>li>a.btn{justify-content:center;border-radius:999px;border-bottom:0;padding:14px 22px;color:#fff}
+  .menu>li>a.btn:hover{background:var(--brand-dark);color:#fff}
+  .menu .caret{transition:transform .25s ease}
+  .menu>li.open>a .caret{transform:rotate(225deg) translateY(-3px)}
+  .drop a{min-height:44px}
+
+  /* While the menu is open: page behind does not scroll, floating buttons step aside */
+  html.menu-open{overflow:hidden}
+  html.menu-open .float-wa,html.menu-open .to-top{opacity:0;visibility:hidden;pointer-events:none}
+
+  /* Jump links land below the sticky header */
+  html{scroll-padding-top:88px}
+  /* Home page: the section bar sits just under the sticky header */
+  .x-secnav{top:86px}
+  html:has(.x-secnav){scroll-padding-top:150px}
+}
+@media (max-width:760px){
+  .x-secnav{top:84px}
+  html:has(.x-secnav){scroll-padding-top:140px}
+}
+
+/* Browsers without blur support get a solid header and menu */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  @media (max-width:1180px){
+    header::before{background:rgba(255,255,255,.97)}
+    .menu{background:#fff}
+  }
+}
+
+/* Very small phones (320–380px): keep logo, name and menu button on one line */
+@media (max-width:380px){
+  header .wrap.nav{padding:0 14px}
+  .brand{gap:9px}
+  .brand img{width:40px}
+  .brand span{font-size:.9rem}
+  .brand small{font-size:.52rem;letter-spacing:.06em}
+  .ctas .btn,.hero-ctas .btn{width:100%;justify-content:center;padding-left:14px;padding-right:14px;white-space:nowrap}
+}

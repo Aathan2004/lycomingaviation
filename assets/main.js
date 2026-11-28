@@ -1,13 +1,7 @@
 // ===== EDIT THESE ONCE =====
 const WHATSAPP_NUMBER = "918925850808"; // country code + number, digits only
 
-// Mobile menu
-const burger = document.querySelector('.burger');
-const menu = document.querySelector('.menu');
-burger && burger.addEventListener('click', () => menu.classList.toggle('open'));
-document.querySelectorAll('.menu > li > a.has-drop').forEach(a => a.addEventListener('click', e => {
-  if (window.innerWidth <= 1180) { e.preventDefault(); a.parentElement.classList.toggle('open'); }
-}));
+// Mobile menu: see assets/nav.js
 
 // WhatsApp links
 document.querySelectorAll('[data-wa]').forEach(el => {

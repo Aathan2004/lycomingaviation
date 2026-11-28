@@ -236,6 +236,7 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);margin-top:96px}
 <link rel="stylesheet" href="assets/floating.css">
 <link rel="stylesheet" href="assets/motion.css">
 <link rel="stylesheet" href="assets/motion-plus.css">
+<link rel="stylesheet" href="assets/nav.css?v=1">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who can apply for pilot training?", "acceptedAnswer": {"@type": "Answer", "text": "Students who have passed Class 12 with Physics and Mathematics and are at least 17 years old. If you studied a different stream, you can clear Physics and Maths through NIOS — we'll guide you."}}, {"@type": "Question", "name": "How long does it take to become a commercial pilot?", "acceptedAnswer": {"@type": "Answer", "text": "Usually around 18 months to 2 years, depending on ground exam results, flying-school schedules and weather."}}, {"@type": "Question", "name": "Is an education loan available?", "acceptedAnswer": {"@type": "Answer", "text": "Many banks offer loans for pilot training. Our counsellors help you prepare the documents and plan the payment stages."}}, {"@type": "Question", "name": "Do you help with jobs after the course?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We offer placement assistance for all programmes, including interview and grooming preparation."}}, {"@type": "Question", "name": "I didn't take Physics and Maths in Class 12. Can I still become a pilot?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You can clear Physics and Maths through NIOS (National Institute of Open Schooling). Our NIOS assistance covers registration, subject selection, study guidance and documentation."}}, {"@type": "Question", "name": "What is eGCA and do you help with it?", "acceptedAnswer": {"@type": "Answer", "text": "eGCA is DGCA's online portal for pilot registration, logbook entries and licence applications. We handle eGCA registration, logbook entries and RTR, FRTOL, CPL and extension-of-rating applications for you."}}, {"@type": "Question", "name": "Can you arrange type rating slots?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We arrange A320, B737 and ATR type rating slots with training partners. Ask us for current availability and fees."}}, {"@type": "Question", "name": "Can I visit the academy before joining?", "acceptedAnswer": {"@type": "Answer", "text": "Of course. Book a counselling call below and we'll fix a time for you and your parents to visit."}}]}</script>
 </head>
 <body>
@@ -650,15 +651,7 @@ const WHATSAPP_NUMBER = "918925850808";
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-const header = document.querySelector('header');
-addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10));
-
-// Mobile menu (same behaviour as assets/main.js on the inner pages)
-const menu = document.querySelector('.menu');
-document.querySelector('.burger').addEventListener('click', () => menu.classList.toggle('open'));
-document.querySelectorAll('.menu > li > a.has-drop').forEach(a => a.addEventListener('click', e => {
-  if (window.innerWidth <= 1180) { e.preventDefault(); a.parentElement.classList.toggle('open'); }
-}));
+// Header + mobile menu: assets/nav.js
 
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -683,5 +676,6 @@ document.getElementById('form').addEventListener('submit', e => {
 <script src="assets/motion.js"></script>
 <script src="assets/motion-plus.js"></script>
 <script src="assets/analytics.js"></script>
+<script src="assets/nav.js?v=1"></script>
 </body>
 </html>
