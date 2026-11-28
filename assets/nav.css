@@ -76,6 +76,13 @@
   .brand{gap:9px}
   .brand img{width:40px}
   .brand span{font-size:.9rem}
-  .brand small{font-size:.52rem;letter-spacing:.06em}
+  .brand small{letter-spacing:.06em}
   .ctas .btn,.hero-ctas .btn{width:100%;justify-content:center;padding-left:14px;padding-right:14px;white-space:nowrap}
+}
+
+/* Small laptops (1181–1340px): the full menu shows here, so the longer tagline
+   wraps onto two lines under the name to leave room for every menu item.
+   1366px and wider keep the single-line tagline. */
+@media (min-width:1181px) and (max-width:1340px){
+  .brand small{max-width:200px;line-height:1.35;margin-top:2px}
 }
