@@ -216,3 +216,10 @@ html{scroll-padding-top:92px}
   .links:not(.open){visibility:hidden}
   .links{transition:transform .3s,visibility .3s}
 }
+/* Live Google reviews (assets/google-reviews.js) */
+.x-quote .x-av-img{object-fit:cover;background:var(--brand-soft)}
+.x-quote .x-by b a{color:inherit}
+.x-quote .x-by small a{color:var(--brand);font-weight:600}
+.x-quote .x-gnote{color:var(--muted);font-size:.75rem;margin-top:-6px}
+.x-gsrc{text-align:center;color:var(--muted);font-size:.82rem;margin:14px auto 0;max-width:640px}
+.x-gsrc a{color:var(--brand);font-weight:600}
